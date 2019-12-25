@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "lint": "eslint src/** test/**",
-        "test": "test"
+        "test": "test",
+        "build": "tsc"
     },
     "repository": {
         "type": "git",
