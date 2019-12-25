@@ -4,7 +4,8 @@
   "description": "Twitch integration api",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+      "lint": "eslint src/**",
+      "test": "test"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,10 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "typescript": "^3.7.4"
   }
 }
