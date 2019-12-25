@@ -18,7 +18,7 @@
         "express"
     ],
     "author": "impurity",
-    "license": "GNU (v.3)",
+    "license": "SEE LICENSE IN LICENSE.txt",
     "bugs": {
         "url": "https://github.com/impurity-online/twitch-service/issues"
     },
@@ -43,5 +43,8 @@
         "hooks": {
             "pre-commit": "lint-staged"
         }
+    },
+    "dependencies": {
+        "express": "^4.17.1"
     }
 }
