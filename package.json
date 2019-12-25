@@ -16,7 +16,7 @@
     "express"
   ],
   "author": "impurity",
-  "license": "ISC",
+  "license": "GNU (v.3)",
   "bugs": {
     "url": "https://github.com/impurity-online/twitch-service/issues"
   },
