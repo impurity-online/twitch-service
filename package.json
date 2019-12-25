@@ -1,0 +1,24 @@
+{
+  "name": "twitch-service",
+  "version": "1.0.0",
+  "description": "Twitch integration api",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/impurity-online/twitch-service.git"
+  },
+  "keywords": [
+    "twitch",
+    "node",
+    "express"
+  ],
+  "author": "impurity",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/impurity-online/twitch-service/issues"
+  },
+  "homepage": "https://github.com/impurity-online/twitch-service#readme"
+}
