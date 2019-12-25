@@ -1,41 +1,46 @@
 {
-  "name": "twitch-service",
-  "version": "1.0.0",
-  "description": "Twitch integration api",
-  "main": "index.js",
-  "scripts": {
-      "lint": "eslint src/**",
-      "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/impurity-online/twitch-service.git"
-  },
-  "keywords": [
-    "twitch",
-    "node",
-    "express"
-  ],
-  "author": "impurity",
-  "license": "GNU (v.3)",
-  "bugs": {
-    "url": "https://github.com/impurity-online/twitch-service/issues"
-  },
-  "homepage": "https://github.com/impurity-online/twitch-service#readme",
-  "devDependencies": {
-    "@types/node": "^13.1.0",
-    "@typescript-eslint/eslint-plugin": "^2.13.0",
-    "@typescript-eslint/parser": "^2.13.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "husky": "^3.1.0",
-    "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "typescript": "^3.7.4"
-  }
+    "name": "twitch-service",
+    "version": "1.0.0",
+    "description": "Twitch integration api",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint src/** test/**",
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/impurity-online/twitch-service.git"
+    },
+    "keywords": [
+        "twitch",
+        "node",
+        "express"
+    ],
+    "author": "impurity",
+    "license": "GNU (v.3)",
+    "bugs": {
+        "url": "https://github.com/impurity-online/twitch-service/issues"
+    },
+    "homepage": "https://github.com/impurity-online/twitch-service#readme",
+    "devDependencies": {
+        "@types/node": "^13.1.0",
+        "@typescript-eslint/eslint-plugin": "^2.13.0",
+        "@typescript-eslint/parser": "^2.13.0",
+        "eslint": "^6.8.0",
+        "eslint-config-standard": "^14.1.0",
+        "eslint-plugin-import": "^2.19.1",
+        "eslint-plugin-node": "^10.0.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1",
+        "husky": "^3.1.0",
+        "lint-staged": "^9.5.0",
+        "prettier": "^1.19.1",
+        "pretty-quick": "^2.0.1",
+        "typescript": "^3.7.4"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    }
 }
