@@ -1,3 +1,5 @@
-test('should return true given internal link', () => {
-    expect(true).toBeTruthy();
+describe('index', () => {
+    it('should return true given internal link', () => {
+        expect(true).toBeTruthy();
+    });
 });
