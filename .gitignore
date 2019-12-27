@@ -1,4 +1,6 @@
 .env
+ssl/**
+!ssl/.gitkeep
 
 # Logs
 logs
