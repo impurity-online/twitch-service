@@ -4,7 +4,7 @@ import { UserRouter } from './routes/user-routes';
 
 function prompt(): void {
     if (process.env.nodeEnv === 'local') {
-        console.log(`Server running - https://localhost:${process.env.port}`);
+        console.log(`Server running - http://localhost:${process.env.port}`);
     } else {
         console.log(`Server running!`);
     }
