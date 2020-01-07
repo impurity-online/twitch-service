@@ -1,5 +1,5 @@
 describe('index', () => {
-    it('should return true given internal link', () => {
+    it('should ...', () => {
         expect(true).toBeTruthy();
     });
 });
