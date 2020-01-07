@@ -1,7 +1,10 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
+import * as dotenv from 'dotenv';
 
-const app = new Koa();
+dotenv.config();
+const port: number = parseInt(process.env.port) || 8080;
+const app: Koa = new Koa();
 
 app.use(async (ctx, next) => {
     console.log('Url:', ctx.url);
@@ -14,6 +17,6 @@ router.get('/*', async ctx => {
 });
 app.use(router.routes());
 
-app.listen(3000);
+app.listen(port);
 
-console.log('Server running on port 3000');
+console.log(`Server running - port:${port} - nodeEnv:${process.env.nodeEnv}`);
