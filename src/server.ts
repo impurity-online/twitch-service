@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import dotenv from 'dotenv';
 import { UserRouter } from './routes/user-routes';
+import logger from 'koa-logger';
 
 function prompt(): void {
     if (process.env.nodeEnv === 'local') {
@@ -15,8 +16,13 @@ function start(): void {
     const port: number = Number(process.env.port) || 8080;
     const app: Koa = new Koa();
 
+    // Middleware
+    app.use(logger());
+
+    // Routes
     app.use(UserRouter.routes());
 
+    // Start
     app.listen(port, () => prompt());
 }
 
