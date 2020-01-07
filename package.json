@@ -9,7 +9,7 @@
         "lint": "eslint . --ext .ts",
         "lint:fix": "npm run lint -- --fix",
         "test": "jest --coverage --verbose",
-        "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/server.ts"
+        "start": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/server.ts"
     },
     "repository": {
         "type": "git",
