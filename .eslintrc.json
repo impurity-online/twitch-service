@@ -12,7 +12,10 @@
     },
     "overrides": [
         {
-            "files": ["*.spec.ts"],
+            "env": {
+                "jest": true
+            },
+            "files": ["*.test.ts"],
             "plugins": ["jest", "prettier"],
             "extends": ["plugin:jest/recommended", "prettier"],
             "rules": {
