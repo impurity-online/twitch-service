@@ -4,6 +4,7 @@
     "description": "Twitch integration api",
     "main": "index.js",
     "scripts": {
+        "build": "tsc -p tsconfig.build.json",
         "ssl": "ssl.sh",
         "lint": "eslint . --ext .ts",
         "lint:fix": "npm run lint -- --fix",
