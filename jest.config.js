@@ -2,7 +2,7 @@ module.exports = {
     roots: ['<rootDir>/test'],
     globals: {
         'ts-jest': {
-            tsConfig: 'tsconfig.test.json',
+            tsConfig: 'tsconfig.json',
         },
     },
     moduleFileExtensions: ['ts', 'js'],
