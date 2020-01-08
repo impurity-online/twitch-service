@@ -1,7 +1,6 @@
 import { Context } from 'koa';
 import Controller from './controller';
 import UserService from '../services/user-service';
-import Router = require('koa-router');
 
 export default class UserController implements Controller {
     private readonly userService: UserService;

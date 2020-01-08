@@ -1,6 +1,5 @@
 .env
-ssl/**
-!ssl/.gitkeep
+*code-workspace
 
 # Logs
 logs

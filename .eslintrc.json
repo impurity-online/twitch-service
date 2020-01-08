@@ -13,6 +13,7 @@
     "plugins": ["@typescript-eslint", "prettier"],
     "rules": {
         "prettier/prettier": ["error"],
+        "@typescript-eslint/no-require-imports": "error",
         "@typescript-eslint/explicit-function-return-type": "error"
     },
     "overrides": [
