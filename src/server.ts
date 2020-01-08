@@ -1,8 +1,9 @@
 import Koa from 'koa';
 import dotenv from 'dotenv';
-import { UserRouter } from './routes/user-routes';
 import logger from 'koa-logger';
 import favicon from 'koa-favicon';
+import UserController from './controllers/user-controller';
+import Router from 'koa-router';
 
 function prompt(): void {
     if (process.env.nodeEnv === 'local') {
@@ -21,8 +22,10 @@ function start(): void {
     app.use(logger());
     app.use(favicon('./public/favicon.ico'));
 
-    // Routes
-    app.use(UserRouter.routes());
+    // Mount
+    const rootRouter = new Router();
+    new UserController(rootRouter);
+    app.use(rootRouter.routes());
 
     // Start
     app.listen(port, () => prompt());
