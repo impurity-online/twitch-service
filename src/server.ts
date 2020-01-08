@@ -2,6 +2,7 @@ import Koa from 'koa';
 import dotenv from 'dotenv';
 import { UserRouter } from './routes/user-routes';
 import logger from 'koa-logger';
+import favicon from 'koa-favicon';
 
 function prompt(): void {
     if (process.env.nodeEnv === 'local') {
@@ -18,6 +19,7 @@ function start(): void {
 
     // Middleware
     app.use(logger());
+    app.use(favicon('./public/favicon.ico'));
 
     // Routes
     app.use(UserRouter.routes());
