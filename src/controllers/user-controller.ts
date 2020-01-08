@@ -1,19 +1,23 @@
 import { Context } from 'koa';
-import Router = require('koa-router');
 import Controller from './controller';
+import UserService from '../services/user-service';
+import Router = require('koa-router');
 
 export default class UserController implements Controller {
-    constructor(rootRouter: Router) {
-        this.mount(rootRouter);
+    private readonly userService: UserService;
+
+    constructor() {
+        this.userService = new UserService();
     }
 
     public async getUsers(context: Context): Promise<void> {
-        context.status = 200;
-        context.body = 'Hello World!';
-    }
-
-    public mount(rootRouter: Router): void {
-        rootRouter.get('/:userName', this.getUsers);
-        rootRouter.use('/users', rootRouter.routes());
+        try {
+            const user = await this.userService.getUserByUsername(context.params.username);
+            context.status = 200;
+            context.body = user;
+        } catch (e) {
+            context.status = 500;
+            console.error(e);
+        }
     }
 }

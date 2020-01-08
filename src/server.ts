@@ -4,6 +4,7 @@ import logger from 'koa-logger';
 import favicon from 'koa-favicon';
 import UserController from './controllers/user-controller';
 import Router from 'koa-router';
+import UserRoutes from './routes/user-routes';
 
 function prompt(): void {
     if (process.env.nodeEnv === 'local') {
@@ -24,7 +25,8 @@ function start(): void {
 
     // Mount
     const rootRouter = new Router();
-    new UserController(rootRouter);
+    UserRoutes.mount(rootRouter, new UserController());
+
     app.use(rootRouter.routes());
 
     // Start
