@@ -1,5 +1,7 @@
 {
     "eslint.format.enable": true,
     "eslint.lintTask.enable": true,
-    "eslint.lintTask.options": "npm run lint"
+    "eslint.lintTask.options": "npm run lint",
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4
 }
