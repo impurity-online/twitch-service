@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import logger from 'koa-logger';
 import favicon from 'koa-favicon';
 import Router from 'koa-router';
-import UserRoutes from './routes/user-routes';
-import UserController from './controllers/user-controller';
+import UserRoutes from './route/user-routes';
+import UserController from './controller/user-controller';
 
 function prompt(): void {
     if (process.env.nodeEnv === 'local') {

@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import UserService from '../services/user-service';
+import UserService from '../service/user-service';
 
 export default class UserController {
     private readonly userService: UserService;

@@ -1,5 +1,5 @@
 import Router from 'koa-router';
-import UserController from '../controllers/user-controller';
+import UserController from '../controller/user-controller';
 
 export default class UserRoutes {
     public static mount(rootRouter: Router, userController: UserController): void {

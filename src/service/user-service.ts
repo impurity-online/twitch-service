@@ -1,6 +1,6 @@
 import UserServiceInterface from './user-service-interface';
-import TwitchClient from '../clients/twitch-client';
-import User from '../models/user';
+import TwitchClient from '../client/twitch-client';
+import User from '../model/user';
 
 export default class UserService implements UserServiceInterface {
     private readonly twitchClient: TwitchClient;

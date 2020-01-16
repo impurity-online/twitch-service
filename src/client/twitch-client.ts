@@ -1,4 +1,4 @@
-import Environment from '../utils/environment';
+import Environment from '../util/environment';
 import { RestClient } from './rest-client';
 import { AxiosRequestConfig, Method } from 'axios';
 
