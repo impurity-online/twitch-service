@@ -1,10 +1,13 @@
-import Koa from 'koa';
 import dotenv from 'dotenv';
-import logger from 'koa-logger';
+import Koa from 'koa';
 import favicon from 'koa-favicon';
+import logger from 'koa-logger';
 import Router from 'koa-router';
-import UserRoutes from './route/user-routes';
+
+import TwitchClient from './client/twitch-client';
 import UserController from './controller/user-controller';
+import UserRoutes from './route/user-routes';
+import UserService from './service/user-service';
 
 function prompt(): void {
     if (process.env.nodeEnv === 'local') {
@@ -25,7 +28,7 @@ function start(): void {
 
     // Mount
     const rootRouter = new Router();
-    UserRoutes.mount(rootRouter, new UserController());
+    UserRoutes.mount(rootRouter, new UserController(new UserService(new TwitchClient())));
 
     app.use(rootRouter.routes());
 

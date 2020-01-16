@@ -1,16 +1,15 @@
 import { Context } from 'koa';
-import UserService from '../service/user-service';
 
-export default class UserController {
-    private readonly userService: UserService;
+import User from '../model/user';
+import IUserService from '../service/i-user-service';
+import IUserController from './i-user-controller';
 
-    constructor() {
-        this.userService = new UserService();
-    }
+export default class UserController implements IUserController {
+    constructor(private readonly userService: IUserService) {}
 
     public async getUsers(context: Context): Promise<void> {
         try {
-            const user = await this.userService.getUser(context.params.username);
+            const user: User = await this.userService.getUser(context.params.username);
             if (user) {
                 context.status = 200;
                 context.body = user;

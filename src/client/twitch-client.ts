@@ -1,5 +1,4 @@
 import { AxiosRequestConfig } from 'axios';
-
 import Environment from '../util/environment';
 import IRestClient from './i-rest-client';
 import { RestClient } from './rest-client';

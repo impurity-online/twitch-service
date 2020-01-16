@@ -7,26 +7,34 @@ export abstract class RestClient implements IRestClient {
 
     public async get<T>(endpoint: string, config: AxiosRequestConfig): Promise<T> {
         this.onValidate(endpoint);
-        const decoratedConfig = this.onDecorate(config);
-        return axios.get<T>(endpoint, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
+        const decoratedConfig: AxiosRequestConfig = this.onDecorate(config);
+        const constructedUrl: string = this.onConstructUrl(this.baseUrl, endpoint);
+        return axios.get<T>(constructedUrl, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
     }
 
     public async post<T>(endpoint: string, config: AxiosRequestConfig): Promise<T> {
         this.onValidate(endpoint);
-        const decoratedConfig = this.onDecorate(config);
-        return axios.post<T>(endpoint, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
+        const decoratedConfig: AxiosRequestConfig = this.onDecorate(config);
+        const constructedUrl: string = this.onConstructUrl(this.baseUrl, endpoint);
+        return axios.post<T>(constructedUrl, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
     }
 
     public async put<T>(endpoint: string, config: AxiosRequestConfig): Promise<T> {
         this.onValidate(endpoint);
-        const decoratedConfig = this.onDecorate(config);
-        return axios.put<T>(endpoint, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
+        const decoratedConfig: AxiosRequestConfig = this.onDecorate(config);
+        const constructedUrl: string = this.onConstructUrl(this.baseUrl, endpoint);
+        return axios.put<T>(constructedUrl, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
     }
 
     public async delete<T>(endpoint: string, config: AxiosRequestConfig): Promise<T> {
         this.onValidate(endpoint);
-        const decoratedConfig = this.onDecorate(config);
-        return axios.delete<T>(endpoint, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
+        const decoratedConfig: AxiosRequestConfig = this.onDecorate(config);
+        const constructedUrl: string = this.onConstructUrl(this.baseUrl, endpoint);
+        return axios.delete<T>(constructedUrl, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
+    }
+
+    protected onConstructUrl(baseUrl: string, endpoint: string): string {
+        return `${baseUrl}${endpoint}`;
     }
 
     protected onUnwrap<T>(response: AxiosResponse<T>): T {

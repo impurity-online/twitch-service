@@ -1,8 +1,9 @@
 import Router from 'koa-router';
-import UserController from '../controller/user-controller';
+
+import IUserController from '../controller/i-user-controller';
 
 export default class UserRoutes {
-    public static mount(rootRouter: Router, userController: UserController): void {
+    public static mount(rootRouter: Router, userController: IUserController): void {
         rootRouter.get('/:username', context => userController.getUsers(context));
         rootRouter.use('/users', rootRouter.routes());
     }

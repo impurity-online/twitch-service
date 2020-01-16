@@ -1,5 +1,5 @@
 import User from '../model/user';
 
-export default interface UserServiceInterface {
+export default interface IUserService {
     getUser(username: string): Promise<User>;
 }
