@@ -1,8 +1,10 @@
-import Environment from '../util/environment';
-import { RestClient } from './rest-client';
-import { AxiosRequestConfig, Method } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 
-export default class TwitchClient extends RestClient {
+import Environment from '../util/environment';
+import IRestClient from './i-rest-client';
+import { RestClient } from './rest-client';
+
+export default class TwitchClient extends RestClient implements IRestClient {
     private readonly clientId: string;
 
     constructor() {
@@ -10,11 +12,11 @@ export default class TwitchClient extends RestClient {
         this.clientId = Environment.twitchClientId;
     }
 
-    public async makeRequest(method: Method, endpoint: string, config: AxiosRequestConfig): Promise<any> {
+    protected onDecorate(config: AxiosRequestConfig): AxiosRequestConfig {
         config.headers = {
             'Client-ID': this.clientId,
             ...config.headers,
         };
-        return await super.makeRequest(method, endpoint, config);
+        return config;
     }
 }

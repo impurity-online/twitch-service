@@ -3,5 +3,8 @@
     "eslint.lintTask.enable": true,
     "eslint.lintTask.options": "npm run lint",
     "prettier.singleQuote": true,
-    "prettier.tabWidth": 4
+    "prettier.tabWidth": 4,
+    "prettier.configPath": ".prettierrc.json",
+    "typescriptHero.imports.organizeOnSave": true,
+    "typescriptHero.imports.disableImportRemovalOnOrganize": true
 }

@@ -1,20 +1,45 @@
-import axios, { Method, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export abstract class RestClient {
-    protected readonly baseUrl: string;
+import IRestClient from './i-rest-client';
 
-    constructor(baseUrl: string) {
-        this.baseUrl = baseUrl;
+export abstract class RestClient implements IRestClient {
+    constructor(protected readonly baseUrl: string) {}
+
+    public async get<T>(endpoint: string, config: AxiosRequestConfig): Promise<T> {
+        this.onValidate(endpoint);
+        const decoratedConfig = this.onDecorate(config);
+        return axios.get<T>(endpoint, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
     }
 
-    public async makeRequest(method: Method, endpoint: string, data: AxiosRequestConfig): Promise<any> {
+    public async post<T>(endpoint: string, config: AxiosRequestConfig): Promise<T> {
+        this.onValidate(endpoint);
+        const decoratedConfig = this.onDecorate(config);
+        return axios.post<T>(endpoint, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
+    }
+
+    public async put<T>(endpoint: string, config: AxiosRequestConfig): Promise<T> {
+        this.onValidate(endpoint);
+        const decoratedConfig = this.onDecorate(config);
+        return axios.put<T>(endpoint, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
+    }
+
+    public async delete<T>(endpoint: string, config: AxiosRequestConfig): Promise<T> {
+        this.onValidate(endpoint);
+        const decoratedConfig = this.onDecorate(config);
+        return axios.delete<T>(endpoint, decoratedConfig).then((response: AxiosResponse<T>) => this.onUnwrap<T>(response));
+    }
+
+    protected onUnwrap<T>(response: AxiosResponse<T>): T {
+        return response.data;
+    }
+
+    protected onValidate(endpoint: string): void {
         if (endpoint[0] !== '/') {
             throw new Error("Endpoint must be prefixed with a '\\'");
         }
-        return await axios({
-            method,
-            url: `${this.baseUrl}${endpoint}`,
-            ...data,
-        });
+    }
+
+    protected onDecorate(config: AxiosRequestConfig): AxiosRequestConfig {
+        return config;
     }
 }
