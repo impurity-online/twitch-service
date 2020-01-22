@@ -1,11 +1,14 @@
+import { Types } from './../config/container-types-config';
 import { Context } from 'koa';
 
 import User from '../model/user';
 import IUserService from '../service/i-user-service';
 import IUserController from './i-user-controller';
+import { injectable, inject } from 'inversify';
 
+@injectable()
 export default class UserController implements IUserController {
-    constructor(private readonly userService: IUserService) {}
+    constructor(@inject(Types.UserService) private readonly userService: IUserService) {}
 
     public async getUsers(context: Context): Promise<void> {
         try {

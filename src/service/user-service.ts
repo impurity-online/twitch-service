@@ -1,10 +1,13 @@
+import { Types } from './../config/container-types-config';
+import { inject, injectable } from 'inversify';
 import IRestClient from '../client/i-rest-client';
 import TwitchUserResponse from '../model/twitch-user-response';
 import User from '../model/user';
 import IUserService from './i-user-service';
 
+@injectable()
 export default class UserService implements IUserService {
-    constructor(private readonly client: IRestClient) {}
+    constructor(@inject(Types.TwitchClient) private readonly client: IRestClient) {}
 
     public async getUser(username: string): Promise<User> {
         return await this.client

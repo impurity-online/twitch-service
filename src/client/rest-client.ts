@@ -1,7 +1,9 @@
+import { injectable } from 'inversify';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import IRestClient from './i-rest-client';
 
+@injectable()
 export abstract class RestClient implements IRestClient {
     constructor(protected readonly baseUrl: string) {}
 

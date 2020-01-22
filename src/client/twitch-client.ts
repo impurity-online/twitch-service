@@ -1,19 +1,17 @@
+import { Types } from './../config/container-types-config';
 import { AxiosRequestConfig } from 'axios';
-import Environment from '../util/environment';
-import IRestClient from './i-rest-client';
 import { RestClient } from './rest-client';
+import TwitchClientConfig from '../config/twitch-client-config';
+import { injectable, inject } from 'inversify';
 
-export default class TwitchClient extends RestClient implements IRestClient {
-    private readonly clientId: string;
-
-    constructor() {
-        super('https://api.twitch.tv/helix');
-        this.clientId = Environment.twitchClientId;
+export default class TwitchClient extends RestClient {
+    constructor(@inject(Types.TwitchClientConfig) private readonly twitchClientConfig: TwitchClientConfig) {
+        super(twitchClientConfig.baseUrl);
     }
 
     protected onDecorate(config: AxiosRequestConfig): AxiosRequestConfig {
         config.headers = {
-            'Client-ID': this.clientId,
+            'Client-ID': this.twitchClientConfig.clientId,
             ...config.headers,
         };
         return config;
