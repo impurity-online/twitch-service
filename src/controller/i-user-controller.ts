@@ -1,5 +1,5 @@
-import { Context } from 'koa';
+import { Context, Next } from 'koa';
 
 export default interface IUserController {
-    getUsers(context: Context): Promise<void>;
+    getUsers(context: Context, next: Next): Promise<Next>;
 }

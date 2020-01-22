@@ -1,28 +1,31 @@
 import { Types } from './../config/container-types-config';
-import { Context } from 'koa';
+import { Context, Next } from 'koa';
 
 import User from '../model/user';
 import IUserService from '../service/i-user-service';
 import IUserController from './i-user-controller';
-import { injectable, inject } from 'inversify';
+import { inject } from 'inversify';
+import Controller from './controller';
 
-@injectable()
-export default class UserController implements IUserController {
-    constructor(@inject(Types.UserService) private readonly userService: IUserService) {}
+export default class UserController extends Controller implements IUserController {
+    constructor(@inject(Types.UserService) private readonly userService: IUserService) {
+        super();
+    }
 
-    public async getUsers(context: Context): Promise<void> {
+    public async getUsers(context: Context, next: Next): Promise<Next> {
+        const username: string = context.params.username;
+        if (!username) {
+            return this.response(context, next, 400, 'Username is required');
+        }
         try {
-            const user: User = await this.userService.getUser(context.params.username);
+            const user: User = await this.userService.getUser(username);
             if (user) {
-                context.status = 200;
-                context.body = user;
-            } else {
-                context.status = 404;
-                context.body = user;
+                return this.response(context, next, 200, JSON.stringify(user));
             }
+            return this.response(context, next, 404, `Username ${username} was not found`);
         } catch (e) {
-            context.status = 500;
-            console.error(e);
+            console.error(`Could not complete get user with username ${username} - ${e}`);
+            return this.response(context, next, 500, `Username ${username} caused an internal server error`);
         }
     }
 }
