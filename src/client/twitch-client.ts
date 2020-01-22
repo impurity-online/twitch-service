@@ -2,7 +2,7 @@ import { Types } from './../config/container-types-config';
 import { AxiosRequestConfig } from 'axios';
 import { RestClient } from './rest-client';
 import TwitchClientConfig from '../config/twitch-client-config';
-import { injectable, inject } from 'inversify';
+import { inject } from 'inversify';
 
 export default class TwitchClient extends RestClient {
     constructor(@inject(Types.TwitchClientConfig) private readonly twitchClientConfig: TwitchClientConfig) {
